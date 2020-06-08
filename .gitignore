@@ -1,0 +1,16 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# build
+build/
+
+# Dependency directories
+node_modules/
+
+# Serverless directories
+.vscode
+.DS_Store
