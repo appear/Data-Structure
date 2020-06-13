@@ -3,7 +3,7 @@ import { expect } from 'chai'
 import LinkedList from '.'
 
 describe('Linked List', () => {
-  it('first entered value is head', () => {
+  it('head', () => {
     const linkedList = new LinkedList()
 
     linkedList.append(10)
@@ -11,7 +11,7 @@ describe('Linked List', () => {
     expect(linkedList.getHead()?.value).to.equal(10)
   })
 
-  it('last entered value is tail', () => {
+  it('tail', () => {
     const linkedList = new LinkedList()
 
     linkedList.append(10)
@@ -20,7 +20,7 @@ describe('Linked List', () => {
     expect(linkedList.getTail()?.value).to.equal(20)
   })
 
-  it('preappend value is head', () => {
+  it('preappend', () => {
     const linkedList = new LinkedList()
 
     linkedList.append(10)
@@ -39,6 +39,6 @@ describe('Linked List', () => {
 
     linkedList.delete(10)
 
-    expect(linkedList.getHead()?.value).to.equal(10)
+    expect(linkedList.getHead()?.value).to.equal(20)
   })
 })
