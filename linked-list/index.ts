@@ -44,18 +44,67 @@ class LinkedList<T> {
     return list
   }
   delete(value: T) {
-    let currentNode = this.head
+    if (!this.head) {
+      return null
+    }
 
-    while (currentNode) {
-      if (currentNode?.next?.value === value) {
-        currentNode.next = currentNode.next.next
-      } else {
-        currentNode = currentNode.next
+    let deletedNode = null
+
+    while (this.head?.value === value) {
+      deletedNode = this.head
+      this.head = this.head.next
+    }
+
+    let currentNode: Node<T> | null = this.head
+
+    if (currentNode) {
+      while (currentNode.next) {
+        if (currentNode.next.value === value) {
+          deletedNode = currentNode.next
+          currentNode.next = currentNode.next.next
+        } else {
+          currentNode = currentNode.next
+        }
       }
     }
 
-    return this
+    if (this.tail?.value === value) {
+      this.tail = currentNode
+    }
+
+    return deletedNode
   }
+
+  find({
+    value,
+    callback,
+  }: {
+    value?: T
+    callback?: (value: T) => boolean
+  }): null | Node<T> {
+    if (!this.head) {
+      return null
+    }
+    let currentNode: Node<T> | null = this.head
+
+    while (currentNode) {
+      if (callback && callback(currentNode.value)) {
+        return currentNode
+      }
+
+      /**
+       * TODO: deep equal
+       */
+      if (value !== undefined && currentNode.value === value) {
+        return currentNode
+      }
+
+      currentNode = currentNode.next
+    }
+
+    return null
+  }
+
   getHead() {
     return this.head
   }
