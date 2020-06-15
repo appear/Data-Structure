@@ -1,4 +1,4 @@
-import Node from '../node'
+import Node from './node'
 
 class LinkedList<T> {
   private head: Node<T> | null
@@ -44,13 +44,13 @@ class LinkedList<T> {
     return list
   }
   delete(value: T) {
-    if (!this.head) {
+    if (this.head === null) {
       return null
     }
 
     let deletedNode = null
 
-    while (this.head?.value === value) {
+    if (this.head.value === value) {
       deletedNode = this.head
       this.head = this.head.next
     }
@@ -74,7 +74,6 @@ class LinkedList<T> {
 
     return deletedNode
   }
-
   find({
     value,
     callback,

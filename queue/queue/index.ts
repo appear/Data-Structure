@@ -15,6 +15,10 @@ class Queue<T> {
   size() {
     return this.list.length
   }
+
+  isEmpty() {
+    return this.list.length === 0
+  }
 }
 
 export default Queue
