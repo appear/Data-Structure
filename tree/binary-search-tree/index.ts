@@ -7,6 +7,10 @@ class Tree<T> {
     this.head = null
   }
 
+  getHeadValue() {
+    return this.head?.value
+  }
+
   insert(value: T) {
     if (!this.head) {
       this.head = new Node(value)
@@ -45,11 +49,71 @@ class Tree<T> {
     while (currentNode) {
       if (currentNode.value === value) {
         return true
-      } else if (currentNode.value > value) {
-        /* left */
-        currentNode = currentNode.left
+      }
+      currentNode =
+        currentNode.value > value ? currentNode.left : currentNode.right
+    }
+
+    return false
+  }
+
+  delete(value: T) {
+    if (this.head === null || !this.search(value)) {
+      return false
+    }
+
+    let currentNode = this.head
+    let parentNode = this.head
+
+    while (currentNode as Node<T>) {
+      if (currentNode.value === value) {
+        break
+      }
+
+      parentNode = currentNode
+      currentNode =
+        value < currentNode.value
+          ? (currentNode.left as Node<T>)
+          : (currentNode.right as Node<T>)
+    }
+
+    /* case1: Leaf Node */
+    if (currentNode.left === null && currentNode.right === null) {
+      if (value < parentNode.value) {
+        parentNode.left = null
       } else {
-        currentNode = currentNode.right
+        parentNode.right = null
+      }
+      return true
+    }
+
+    /* case2: has One Left Node */
+    if (currentNode.left !== null && currentNode.right === null) {
+      if (value < parentNode.value) {
+        parentNode.left = currentNode.left
+      } else {
+        parentNode.right = currentNode.left
+      }
+      return true
+    }
+
+    /* case3: has One Right Node */
+    if (currentNode.right !== null && currentNode.left === null) {
+      if (value < parentNode.value) {
+        parentNode.left = currentNode.right
+      } else {
+        parentNode.right = currentNode.right
+      }
+
+      return true
+    }
+
+    let changeNode = null
+    let changeParentNode = null
+
+    /* case4: has two Node */
+    if (currentNode.left !== null && currentNode.right !== null) {
+      if (value < parentNode.value) {
       }
     }
 
