@@ -111,9 +111,14 @@ class Tree<T> {
     let changeNode = null
     let changeParentNode = null
 
-    /* case4: has two Node */
+    /* 
+    case4: has two Node
+    왼쪽이라면 가장 큰 값을
+    오른쪽이라면 가장 큰 값을  
+    */
     if (currentNode.left !== null && currentNode.right !== null) {
       if (value < parentNode.value) {
+        changeNode = currentNode.right
       }
     }
 
